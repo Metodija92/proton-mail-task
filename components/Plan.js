@@ -1,20 +1,18 @@
 import texts from '../texts/appTexts'
 
 const Plan = (props) => {
-    const {
-        styles,
-        cycle,
-        plan,
-        mostPopular,
-        symbol,
-        monthlyRate,
-    } = props;
+    const { styles, cycle, plan } = props;
 
     const toGigs = plan.MaxSpace / 1073741824;
     const price = plan.Pricing[cycle] / 100;
     const isPro = plan.Name === 'professional';
     const isAnnual = cycle === '12';
     const isBiennial = cycle === '24';
+    const mostPopular = plan.Name === 'plus';
+    const symbol = texts.currencieSymbols[plan.Currency];
+    const monthlyRate = cycle === '1' ?
+        plan.Pricing[cycle] / 100 :
+        Math.round(plan.Pricing[cycle] / 100 / Number(cycle) * 100) / 100;
 
     return (
         <div className={styles.plan}>

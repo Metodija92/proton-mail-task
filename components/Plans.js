@@ -1,5 +1,4 @@
 import Plan from './Plan'
-import texts from '../texts/appTexts'
 
 const Plans = (props) => {
     const { plans, styles, cycle } = props;
@@ -19,20 +18,11 @@ const Plans = (props) => {
                 <button className={styles.select_button}>Select</button>
             </div>
             {plans.map((plan, i) => {
-                const mostPopular = plan.Name === 'plus';
-                const symbol = texts.currencieSymbols[plan.Currency];
-                const monthlyRate = cycle === '1' ?
-                    plan.Pricing[cycle] / 100 :
-                    Math.round(plan.Pricing[cycle] / 100 / Number(cycle) * 100) / 100;
-
                 return (
                     <Plan key={i}
                         styles={styles}
                         cycle={cycle}
                         plan={plan}
-                        mostPopular={mostPopular}
-                        symbol={symbol}
-                        monthlyRate={monthlyRate}
                     />
                 )
             })}

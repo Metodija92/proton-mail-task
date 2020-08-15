@@ -27,7 +27,7 @@ const Home = (props) => {
     const changeCurrency = (event) => {
         setCurrency(event.target.value);
         setUpdate(true);
-    }
+    };
 
     return (
         <div className={styles.container}>

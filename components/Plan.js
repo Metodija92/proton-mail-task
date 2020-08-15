@@ -8,12 +8,12 @@ const Plan = (props) => {
         mostPopular,
         symbol,
         monthlyRate,
-        isAnnual,
-        isBiennial 
     } = props;
 
     const toGigs = 1073741824;
     const isPro = plan.Name === 'professional';
+    const isAnnual = cycle === '12';
+    const isBiennial = cycle === '24';
 
     return (
         <div className={styles.plan}>

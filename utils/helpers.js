@@ -13,7 +13,7 @@ export const requestPlans = async (currency) => {
         cache: 'default'
     };
 
-    const response = await fetch(`https://api.protonmail.ch/payments/plans?Currency=${currency}`, myInit)
+    const response = await fetch(`https://api.protonmail.ch/payments/plans?Currency=${currency}`, myInit);
     const result = await response.json();
     const filtered = result.Plans.filter(item =>
         item.Name === 'plus' ||

@@ -3,8 +3,6 @@ import texts from '../texts/appTexts'
 
 const Plans = (props) => {
     const { plans, styles, cycle } = props;
-    const isAnnual = cycle === '12';
-    const isBiennial = cycle === '24';
     return (
         <div className={styles.plans_container}>
             <div className={styles.plan}>
@@ -35,8 +33,6 @@ const Plans = (props) => {
                         mostPopular={mostPopular}
                         symbol={symbol}
                         monthlyRate={monthlyRate}
-                        isAnnual={isAnnual}
-                        isBiennial={isBiennial}
                     />
                 )
             })}

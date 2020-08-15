@@ -3,26 +3,23 @@ import { useState, useEffect } from 'react'
 
 import Plans from '../components/Plans'
 import Filters from '../components/Filters'
-import {getHeaders, filterResults} from '../utils/helpers'
+import { requestPlans } from '../utils/helpers'
 
 const Home = (props) => {
-    const {selectedPlans} = props;
+    const { requestedPlans } = props;
     const [currency, setCurrency] = useState('EUR');
-    const [plans, setPlans] = useState(selectedPlans);
+    const [plans, setPlans] = useState(requestedPlans);
     const [shouldUpdate, setUpdate] = useState(false);
     const [cycle, setCycle] = useState('1');
 
-    const requestPlans = async (currency) => {
-        const updateFecth = getHeaders();
-        let response = await fetch(`https://api.protonmail.ch/payments/plans?Currency=${currency}`, updateFecth)
-        let result = await response.json();
-        const updatedPlans = filterResults(result);
+    const currencyUpdate = async (currency) => {
+        const updatedPlans = await requestPlans(currency);
         return setPlans(updatedPlans);
     };
 
     useEffect(() => {
         if (shouldUpdate) {
-            requestPlans(currency);
+            currencyUpdate(currency);
             setUpdate(false);
         }
     });
@@ -49,10 +46,8 @@ const Home = (props) => {
 }
 
 export async function getServerSideProps() {
-    const initialFetch = getHeaders();
-    let response = await fetch(`https://api.protonmail.ch/payments/plans?Currency=EUR`, initialFetch)
-    let result = await response.json();
-    const selectedPlans = filterResults(result);
-    return { props: { selectedPlans } }
+    const requestedPlans = await requestPlans('EUR');
+    return { props: { requestedPlans } }
 }
+
 export default Home

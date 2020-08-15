@@ -1,4 +1,4 @@
-export const getHeaders = () => {
+export const requestPlans = async (currency) => {
     const myHeaders = new Headers();
 
     myHeaders.append('Content-Type', 'application/json;charset=utf-8');
@@ -13,14 +13,12 @@ export const getHeaders = () => {
         cache: 'default'
     };
 
-    return myInit;
-};
-
-export const filterResults = (result) => {
+    const response = await fetch(`https://api.protonmail.ch/payments/plans?Currency=${currency}`, myInit)
+    const result = await response.json();
     const filtered = result.Plans.filter(item =>
         item.Name === 'plus' ||
         item.Name === 'professional' ||
         item.Name === 'visionary'
     );
     return filtered;
-}
+};

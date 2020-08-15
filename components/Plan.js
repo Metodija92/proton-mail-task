@@ -9,7 +9,8 @@ const Plan = (props) => {
         symbol,
         monthlyRate,
         isAnnual,
-        isBiennial } = props
+        isBiennial 
+    } = props;
 
     const toGigs = 1073741824;
     const isPro = plan.Name === 'professional';
@@ -35,7 +36,7 @@ const Plan = (props) => {
                 <li>{plan.MaxMembers} {isPro && '- 5000'} user</li>
                 <li>{plan.MaxSpace / toGigs} GB storage {isPro && 'per user'}</li>
                 <li>{plan.MaxAddresses} addresses {isPro && 'per user'}</li>
-                <li>Supports {plan.MaxDomains} domain{plan.MaxDomains > 1 && '\'s'}</li>
+                <li>Supports {plan.MaxDomains} domain{plan.MaxDomains > 1 && 's'}</li>
                 <li>{texts.plansDescriptions[plan.Name].desc}</li>
                 {plan.MaxVPN > 0 ?
                     <li>Includes ProtonVPN</li> :

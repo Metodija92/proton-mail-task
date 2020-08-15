@@ -12,6 +12,11 @@ const texts = {
             title: 'ProtonMail for families and small businesses',
             desc: 'Includes all features and Priority support'
         }
+    },
+    currencieSymbols: {
+        EUR: '€',
+        USD: '$',
+        CHF: 'CHF'
     }
 }
 

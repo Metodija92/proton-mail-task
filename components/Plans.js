@@ -1,11 +1,7 @@
 import Plan from './Plan'
+import texts from '../texts/appTexts'
 
 const Plans = (props) => {
-    const currencieSymbols = {
-        EUR: '€',
-        USD: '$',
-        CHF: 'CHF'
-    }
     const { plans, styles, cycle } = props;
     const isAnnual = cycle === '12';
     const isBiennial = cycle === '24';
@@ -14,7 +10,6 @@ const Plans = (props) => {
             <div className={styles.plan}>
                 <h2>FREE</h2>
                 <p><span className={styles.fees_span}>0</span> /mo</p>
-
                 <p>The basic for private and secure communications</p>
                 <ul>
                     <li>1 user</li>
@@ -27,7 +22,7 @@ const Plans = (props) => {
             </div>
             {plans.map((plan, i) => {
                 const mostPopular = plan.Name === 'plus';
-                const symbol = currencieSymbols[plan.Currency];
+                const symbol = texts.currencieSymbols[plan.Currency];
                 const monthlyRate = cycle === '1' ?
                     plan.Pricing[cycle] / 100 :
                     Math.round(plan.Pricing[cycle] / 100 / Number(cycle) * 100) / 100;

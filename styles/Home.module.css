@@ -38,6 +38,7 @@
   border: 1px solid #d4ccd4;
   height: 600px;
   width: 300px;
+  margin: 5px auto;
   padding: 20px 15px 0 15px;
   box-sizing: border-box;
 }

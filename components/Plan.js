@@ -10,7 +10,8 @@ const Plan = (props) => {
         monthlyRate,
     } = props;
 
-    const toGigs = 1073741824;
+    const toGigs = plan.MaxSpace / 1073741824;
+    const price = plan.Pricing[cycle] / 100;
     const isPro = plan.Name === 'professional';
     const isAnnual = cycle === '12';
     const isBiennial = cycle === '24';
@@ -23,18 +24,18 @@ const Plan = (props) => {
             <p>{symbol} <span className={styles.fees_span}>{monthlyRate}</span> /mo</p>
 
             {isAnnual &&
-                <span>Billed as {symbol} {plan.Pricing[cycle] / 100} per year</span>
+                <span>Billed as {symbol} {price} per year</span>
             }
 
             {isBiennial &&
-                <span>Billed {symbol} {plan.Pricing[cycle] / 100} every 2 years</span>
+                <span>Billed {symbol} {price} every 2 years</span>
             }
 
             <p>{texts.plansDescriptions[plan.Name].title}</p>
 
             <ul>
                 <li>{plan.MaxMembers} {isPro && '- 5000'} user</li>
-                <li>{plan.MaxSpace / toGigs} GB storage {isPro && 'per user'}</li>
+                <li>{toGigs} GB storage {isPro && 'per user'}</li>
                 <li>{plan.MaxAddresses} addresses {isPro && 'per user'}</li>
                 <li>Supports {plan.MaxDomains} domain{plan.MaxDomains > 1 && 's'}</li>
                 <li>{texts.plansDescriptions[plan.Name].desc}</li>

@@ -1,4 +1,4 @@
-export default function Filters(props) {
+const Filters = (props) => {
     const { styles, changeCurrency, setCycle } = props;
     return (
         <div className={styles.filter_container}>
@@ -15,3 +15,5 @@ export default function Filters(props) {
         </div>
     )
 }
+
+export default Filters
